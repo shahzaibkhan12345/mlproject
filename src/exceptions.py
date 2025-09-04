@@ -18,10 +18,3 @@ class CustomException(Exception):
     def __str__(self):
         return self.error_message
 
-def divide_numbers(a, b):
-    try:
-        return a / b
-    except Exception as e:
-        # Raise our custom exception
-        raise CustomException(e, sys)
-
