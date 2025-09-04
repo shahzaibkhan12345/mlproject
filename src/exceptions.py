@@ -17,3 +17,20 @@ class CustomException(Exception):
 
     def __str__(self):
         return self.error_message
+
+def divide_numbers(a, b):
+    try:
+        return a / b
+    except Exception as e:
+        # Raise our custom exception
+        raise CustomException(e, sys)
+
+if __name__ == "__main__":
+    logging.info("Testing CustomException...")
+
+    try:
+        result = divide_numbers(10, 0)  # ❌ will raise ZeroDivisionError
+    except CustomException as ce:
+        logging.error(ce)
+        print("Caught CustomException:")
+        print(ce)
