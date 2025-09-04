@@ -25,12 +25,3 @@ def divide_numbers(a, b):
         # Raise our custom exception
         raise CustomException(e, sys)
 
-if __name__ == "__main__":
-    logging.info("Testing CustomException...")
-
-    try:
-        result = divide_numbers(10, 0)  # ❌ will raise ZeroDivisionError
-    except CustomException as ce:
-        logging.error(ce)
-        print("Caught CustomException:")
-        print(ce)
