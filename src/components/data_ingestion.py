@@ -5,6 +5,8 @@ from src.logger import logging
 from src.exceptions import CustomException
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from src.components.data_transformation import DataTransformation
+from src.components.data_transformation import DataTransformationConfig
 
 @dataclass
 class DataIngestionConfig:
@@ -46,3 +48,14 @@ class DataIngestion:
         except Exception as e:
             logging.error("Error occurred during data ingestion.")
             raise CustomException(e, sys)
+        
+if __name__ == "__main__":
+    logging.info("Starting the data ingestion process.")
+    obj = DataIngestion()
+    train_data, test_data = obj.initiate_data_ingestion()
+    logging.info("Data ingestion completed.")
+    logging.info("Starting data transformation process.")
+    data_transformation = DataTransformation()
+    train_arr, test_arr, _ = data_transformation.initiate_data_transformation(train_data, test_data)
+    logging.info("Data Transformation done.")
+    print("Data Transformation done")
